@@ -59,10 +59,12 @@ def convert_to_interface(sPath, sEditorType):
   arrRecords = arrRecords[1:-1]
   correctContent = ""
   for record in arrRecords:
-    correctRecord(record, sEditorType)
+    correctRecord(record)
   correctContent += ''.join(arrAllCorrectedRecords)
   correctContent += "\nvar Api = new ApiInterface();"
-  if False == os.path.isdir('../../sdkjs/deploy/' + sEditorType):
+  if False == os.path.isdir('../../sdkjs/deploy/apiInterface'):
+    os.mkdir('../../sdkjs/deploy/apiInterface')
+  if False == os.path.isdir('../../sdkjs/deploy/apiInterface/' + sEditorType):
     os.mkdir('../../sdkjs/deploy/apiInterface/' + sEditorType)
   writeFile("../../sdkjs/deploy/apiInterface/" + sEditorType + "/apiInterface.js", correctContent)
 
